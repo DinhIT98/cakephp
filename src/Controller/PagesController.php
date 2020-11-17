@@ -18,7 +18,7 @@ use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-
+use Cake\Routing\Router;
 /**
  * Static content controller
  *
@@ -66,8 +66,8 @@ class PagesController extends AppController
         }
     }
     public function test(){
-        // $this->layout = 'non-default';
-        // dd($UsersTable);
+        // echo Router::url(['_name' => 'login']);
+        $this->layout = false;
         $this->loadModel('Users');
         $test=$this->Users->find();
         $data=['nguyen huu dinh','nguyen dinh cuong','nguyen minh hieu','tran ho tan phat', 'le hoai son'];
