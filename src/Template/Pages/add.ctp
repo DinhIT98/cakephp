@@ -7,25 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-    <h1>add post</h1>
-    <?= $number ?>
-    <?php foreach($data as $d): ?>
-        <table>
+  <div class="container mt-5">
+  <form action="">
+   <div class="form-inline col-md-3 mb-3 pl-0">
+     <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Search">
+     <a href="" class="pb-2 pl-3"><i class="fa fa-search fa-lg"></i></a>
+   </div>
+  </form>
+  <table class=" table table-striped"> 
+          <thead class="border">
             <tr>
-                <?= $d ?>
+              <th style="width=16px;">ID</th>
+              <th >Name</th>
+              <th >Email</th>
+              <th>Address</th>
+              <th colspan="2">Action</th>
             </tr>
+          </thead>
+        <?php foreach($data as $d): ?>
+            <tr>
+                <td><?= $d['id'] ?></td>
+                <td><?= $d['name']?></td>
+                <td><?= $d['email']?></td>
+                <td><?= $d['address']?></td>
+                <td><a href="" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
+                <td><a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+            </tr>
+        <?php endforeach;?>
         </table>
-    <?php endforeach;?>
+  </div>
+   
+    <br> 
+    <br>
+   
+       
     
-    <?php 
-        echo $this->Form->create('Post');
-        echo $this->Form->input('title');
-        echo $this->Form->input('body',array('rows'=>'3'));
-        // echo $this->Form->end('save');
-    ?>
+    
+  
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

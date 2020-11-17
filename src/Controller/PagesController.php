@@ -66,12 +66,13 @@ class PagesController extends AppController
         }
     }
     public function test(){
-        dd($UsersTable);
-        $test=$this->UsersTable->find('all');
-        dd($test);
+        // $this->layout = 'non-default';
+        // dd($UsersTable);
+        $this->loadModel('Users');
+        $test=$this->Users->find();
         $data=['nguyen huu dinh','nguyen dinh cuong','nguyen minh hieu','tran ho tan phat', 'le hoai son'];
         $number= 100;
-        $this->set(['data'=>$data,'number'=>$number]);
+        $this->set(['data'=>$test,'number'=>$number]);
         $this->render('add');
     }
 }

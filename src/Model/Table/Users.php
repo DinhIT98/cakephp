@@ -3,7 +3,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class UsersTable extends Table
+class Users extends Table
 {
     public function initialize(array $config)
     {
