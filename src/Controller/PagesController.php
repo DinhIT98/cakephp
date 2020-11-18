@@ -75,4 +75,36 @@ class PagesController extends AppController
         $this->set(['data'=>$test,'number'=>$number]);
         $this->render('add');
     }
+    public function demo (){
+        $this->loadModel('Users');
+        $data=$this->Users->find('all');
+        dd($data);
+    }
+    public function Search(){
+        $this->layout = false;
+        if($this->request->is('post')){
+            $this->loadModel('Users');
+            // $data=$this->request->data;
+            $data=$this->Users->find('all',array('conditions'=>array('Users.name LIKE'=>'%'.$this->request->data['search'].'%')));
+            
+            // echo $data;
+            $this->set('data',$data);
+            $this->render('add');
+        }else{
+            dd('nguyen huu dinh');
+        }
+        // $token = $this->request->getParam('_csrfToken');
+        // dd($token);
+        
+    }
+    public function delete($id){
+        // dd($id);
+        $this->loadModel('Users');
+        $this->Users->delete('id',$id);
+        // $this->layout=falste;
+        // $id=$this->request->data;
+        // $this->loadModel('User');
+        // $id =$this->request->data['id'];
+        
+    }
 }

@@ -55,7 +55,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered through `Application::routes()` with `registerMiddleware()`
      */
-    $routes->applyMiddleware('csrf');
+    // $routes->applyMiddleware('csrf');
 
     /*
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -69,8 +69,11 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->connect('/test',['controller'=>'Pages','action'=>'test'],['_name' => 'login']);
-    $routes->connect('/test-call-router',['controlle'=>'Pages','action'=>'demo'],['_name'=>'demo']);
-
+    $routes->connect('/test-call-router',['controller'=>'Pages','action'=>'demo'],['_name'=>'demo']);
+    $routes->post('/search',['controller'=>'Pages','action'=>'search']);
+    $routes->get('/delete/:id',['controller'=>'Pages','action'=>'delete'])
+    // ->setPatterns(['id' => '\d+'])
+    ->setPass(['id']);
     /*'
      * Connect catchall routes for all controllers.
      *
