@@ -55,7 +55,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered through `Application::routes()` with `registerMiddleware()`
      */
-    // $routes->applyMiddleware('csrf');
+    $routes->applyMiddleware('csrf');
 
     /*
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -68,12 +68,16 @@ Router::scope('/', function (RouteBuilder $routes) {
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-    $routes->connect('/test',['controller'=>'Pages','action'=>'test'],['_name' => 'login']);
+    $routes->connect('/index',['controller'=>'Pages','action'=>'index'],['_name' => 'index']);
     $routes->connect('/test-call-router',['controller'=>'Pages','action'=>'demo'],['_name'=>'demo']);
-    $routes->post('/search',['controller'=>'Pages','action'=>'search']);
+    $routes->post('/pages/search',['controller'=>'Pages','action'=>'search']);
     $routes->get('/delete/:id',['controller'=>'Pages','action'=>'delete'])
     // ->setPatterns(['id' => '\d+'])
     ->setPass(['id']);
+    $routes->get('/insert',['controller'=>'Pages','action'=>'insert']);
+    $routes->post('/pages/store',['controller'=>'Pages','action'=>'store']);
+    $routes->get('/edit/:id',['controller'=>'Pages','action'=>'edit'])->setPass(['id']);
+    $routes->post('/pages/update',['controller'=>'Pages','action'=>'update']);
     /*'
      * Connect catchall routes for all controllers.
      *

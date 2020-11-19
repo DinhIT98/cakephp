@@ -13,14 +13,15 @@
   <body>
   <div class="container mt-5">
 
-  <form action="/search" method="POST">
+  <?= $this->Form->create('null',array('type'=>'post','action'=>'search')) ?>
+  <!-- <form action="/search" method="POST"> -->
    <div class="form-inline col-md-3 mb-3 pl-0">
-      
-     <input type="text" class="form-control" name="search" id="search" aria-describedby="helpId" placeholder="Search">
+      <?= $this->Form->input('search',array('type'=>'text','class'=>'form-control','label'=>false,'placeholder'=>'Search')) ?>
+     <!-- <input type="text" class="form-control" name="search" id="search" aria-describedby="helpId" placeholder="Search"> -->
      <button class="pb-2 pl-3 pr-3" type="submit"><i class="fa fa-search fa-lg"></i></button>
    </div>
-   
-  </form>
+   <?= $this->Form->end() ?>
+  <!-- </form> -->
   
   <table class=" table table-striped"> 
           <thead class="border">
@@ -38,7 +39,7 @@
                 <td><?= $d['name']?></td>
                 <td><?= $d['email']?></td>
                 <td><?= $d['address']?></td>
-                <td><a href="/test-call-router" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
+                <td><a href="/edit/<?= $d['id']?>" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
                 <td><a href="/delete/<?= $d['id']?>" id= "<?= $d['id']?>" class="delete btn btn-danger"><i class="fa fa-trash"></i></a></td>
             </tr>
         <?php endforeach;?>

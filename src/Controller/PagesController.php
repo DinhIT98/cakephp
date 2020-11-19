@@ -19,6 +19,7 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 use Cake\Routing\Router;
+use Cake\ORM\TableRegistry;
 /**
  * Static content controller
  *
@@ -65,7 +66,7 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
-    public function test(){
+    public function index(){
         // echo Router::url(['_name' => 'login']);
         $this->layout = false;
         $this->loadModel('Users');
@@ -73,7 +74,7 @@ class PagesController extends AppController
         $data=['nguyen huu dinh','nguyen dinh cuong','nguyen minh hieu','tran ho tan phat', 'le hoai son'];
         $number= 100;
         $this->set(['data'=>$test,'number'=>$number]);
-        $this->render('add');
+        // $this->render('add');
     }
     public function demo (){
         $this->loadModel('Users');
@@ -84,27 +85,63 @@ class PagesController extends AppController
         $this->layout = false;
         if($this->request->is('post')){
             $this->loadModel('Users');
-            // $data=$this->request->data;
             $data=$this->Users->find('all',array('conditions'=>array('Users.name LIKE'=>'%'.$this->request->data['search'].'%')));
-            
-            // echo $data;
             $this->set('data',$data);
-            $this->render('add');
+            $this->render('index');
         }else{
             dd('nguyen huu dinh');
         }
-        // $token = $this->request->getParam('_csrfToken');
-        // dd($token);
+        
         
     }
     public function delete($id){
-        // dd($id);
+
         $this->loadModel('Users');
-        $this->Users->delete('id',$id);
-        // $this->layout=falste;
-        // $id=$this->request->data;
-        // $this->loadModel('User');
-        // $id =$this->request->data['id'];
+        $entity=$this->Users->get($id);
+        $this->Users->delete($entity);
+        $this->redirect('/test');
         
+    }
+    public function insert(){
+        $this->layout=false;
+        // $data=$this->request->data;
+        // dd($data);
+
+    }
+    public function store(){
+        if($this->request->is('post')){
+            $this->loadModel('Users');
+            $user = $this->Users->newEntity();
+            $user->name=$this->request->data['name'];
+            $user->email=$this->request->data['email'];
+            $user->address=$this->request->data['address'];
+            if($this->Users->save($user)){
+                $this->redirect('/test');
+            }else{
+                $this->Flash->set('insert data error !',['key'=>'alert']);
+                $this->redirect('/insert');
+            }
+        
+            
+        }
+        
+    }
+    public function edit($id){
+        $this->layout=false;
+        $this->loadModel('Users');
+        $data=$this->Users->find('all',array('conditions'=>array('Users.id'=>$id)));
+        $this->set('data',$data);
+        
+    }
+    public function update(){
+        $this->loadModel('Users');
+        $usersTable= TableRegistry::getTableLocator()->get('Users');
+        $user = $usersTable->get($this->request->data['id']); 
+        
+        $user->name = $this->request->data['name'];
+        $user->email=$this->request->data['email'];
+        $user->address=$this->request->data['address'];
+        $usersTable->save($user);
+        $this->redirect('/index');
     }
 }
