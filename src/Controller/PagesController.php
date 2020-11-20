@@ -104,10 +104,8 @@ class PagesController extends AppController
         
     }
     public function insert(){
-        $this->layout=false;
-        // $data=$this->request->data;
-        // dd($data);
-
+        
+        $this->viewBuilder()->setLayout('user');
     }
     public function store(){
         if($this->request->is('post')){

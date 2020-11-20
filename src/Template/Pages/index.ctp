@@ -21,7 +21,7 @@
   <table class=" table table-striped"> 
           <thead class="border">
             <tr>
-              <th style="width=16px;">ID</th>
+              <th>ID</th>
               <th >Name</th>
               <th >Email</th>
               <th>Address</th>
