@@ -72,7 +72,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/test-call-router',['controller'=>'Pages','action'=>'demo'],['_name'=>'demo']);
     $routes->post('/pages/search',['controller'=>'Pages','action'=>'search']);
     $routes->get('/delete/:id',['controller'=>'Pages','action'=>'delete'])
-    // ->setPatterns(['id' => '\d+'])
+    ->setPatterns(['id' => '\d+'])
     ->setPass(['id']);
     $routes->get('/insert',['controller'=>'Pages','action'=>'insert']);
     $routes->post('/pages/store',['controller'=>'Pages','action'=>'store']);

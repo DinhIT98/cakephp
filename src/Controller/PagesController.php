@@ -69,6 +69,7 @@ class PagesController extends AppController
     public function index(){
         // echo Router::url(['_name' => 'login']);
         $this->layout = false;
+        // $this->viewBuilder()->setLayout('user');
         $this->loadModel('Users');
         $test=$this->Users->find();
         $data=['nguyen huu dinh','nguyen dinh cuong','nguyen minh hieu','tran ho tan phat', 'le hoai son'];
@@ -127,7 +128,8 @@ class PagesController extends AppController
         
     }
     public function edit($id){
-        $this->layout=false;
+        // $this->layout=false;
+        $this->viewBuilder()->setLayout('user');
         $this->loadModel('Users');
         $data=$this->Users->find('all',array('conditions'=>array('Users.id'=>$id)));
         $this->set('data',$data);

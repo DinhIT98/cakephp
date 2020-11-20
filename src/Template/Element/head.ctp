@@ -1,6 +1,9 @@
-<?php
-    echo $this->Html->charset();
-    echo $this->Html->css('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
-    echo $this->Html->script('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js');
-?>
-<title>CakePHP Tutorial by CodexWorld</title>
+<div class="card">
+    <div class="card-header">
+        <h4>This is header element </h4>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Nguyen Huu Dinh</h5>
+        <p class="card-text">Content</p>
+    </div>
+</div>
