@@ -100,7 +100,7 @@ class PagesController extends AppController
         $this->loadModel('Users');
         $entity=$this->Users->get($id);
         $this->Users->delete($entity);
-        $this->redirect('/test');
+        $this->redirect('/index');
         
     }
     public function insert(){
@@ -115,7 +115,7 @@ class PagesController extends AppController
             $user->email=$this->request->data['email'];
             $user->address=$this->request->data['address'];
             if($this->Users->save($user)){
-                $this->redirect('/test');
+                $this->redirect('/index');
             }else{
                 $this->Flash->set('insert data error !',['key'=>'alert']);
                 $this->redirect('/insert');
@@ -143,5 +143,11 @@ class PagesController extends AppController
         $user->address=$this->request->data['address'];
         $usersTable->save($user);
         $this->redirect('/index');
+    }
+    public function register(){
+        $this->viewBuilder()->setLayout('user');
+    }
+    public function login(){
+        $this->viewBuilder()->setLayout('user');
     }
 }

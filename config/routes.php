@@ -78,6 +78,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->post('/pages/store',['controller'=>'Pages','action'=>'store']);
     $routes->get('/edit/:id',['controller'=>'Pages','action'=>'edit'])->setPass(['id']);
     $routes->post('/pages/update',['controller'=>'Pages','action'=>'update']);
+    $routes->get('/register',['controller'=>'Pages','action'=>'register']);
+    $routes->get('/login',['controller'=>'Pages','action'=>'login']);
     /*'
      * Connect catchall routes for all controllers.
      *
