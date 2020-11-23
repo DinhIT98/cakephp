@@ -11,7 +11,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+  
   <div class="container mt-5">
+  <?php if($this->Flash->render()):?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Insert successfully!</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <?php endif;?>
+  
+ 
   <?= $this->Form->create('null',array('type'=>'post','action'=>'search')) ?>
    <div class="form-inline col-md-3 mb-3 pl-0">
       <?= $this->Form->input('search',array('type'=>'text','class'=>'form-control','label'=>false,'placeholder'=>'Search')) ?>

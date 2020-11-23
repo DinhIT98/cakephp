@@ -10,7 +10,7 @@
        <h3>Insert user</h3>
     </div>
     <div class="card-body">
-        <?= $this->Form->create('insert',array('type'=>'post','action'=>'store')) ?>
+        <?= $this->Form->create('insert',array('type'=>'post','action'=>'insert')) ?>
         <div class="form-group">
             <?= $this->Form->input('name',array('type'=>'text','class'=>'form-control')) ?>
         </div>

@@ -17,13 +17,13 @@
                    </div>
                    <div class="form-check form-check-inline">
                        <label for="gender" class="pr-3">Gender:</label>
-                       <?= $this->Form->radio('gender',['Male'],array('class'=>'form-check-input'))?>
+                       <?= $this->Form->radio('gender',['Male'],array('class'=>'form-check-input', 'value'=>'Male'))?>
                    </div>
                    <div class="form-check form-check-inline">
-                       <?= $this->Form->radio('gender',['Female'],array('class'=>'form-check-input'))?>
+                       <?= $this->Form->radio('gender',['Female'],array('class'=>'form-check-input','value'=>'Female'))?>
                    </div>
                    <div class="form-group">
-                       <?= $this->Form->input('pass',array('type'=>'password','label'=>false,'placeholder'=>'password','class'=>'form-control'))?>
+                       <?= $this->Form->input('password',array('type'=>'password','label'=>false,'placeholder'=>'password','class'=>'form-control'))?>
                    </div>
                    <div class="form-group">
                        <?= $this->Form->input('re_pass',array('type'=>'password','label'=>false,'placeholder'=>'re-password','class'=>'form-control'))?>

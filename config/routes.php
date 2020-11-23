@@ -74,11 +74,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->get('/delete/:id',['controller'=>'Pages','action'=>'delete'])
     ->setPatterns(['id' => '\d+'])
     ->setPass(['id']);
-    $routes->get('/insert',['controller'=>'Pages','action'=>'insert']);
-    $routes->post('/pages/store',['controller'=>'Pages','action'=>'store']);
+    $routes->connect('/pages/insert',['controller'=>'Pages','action'=>'insert']);
+    // $routes->post('/pages/store',['controller'=>'Pages','action'=>'store']);
     $routes->get('/edit/:id',['controller'=>'Pages','action'=>'edit'])->setPass(['id']);
     $routes->post('/pages/update',['controller'=>'Pages','action'=>'update']);
-    $routes->get('/register',['controller'=>'Pages','action'=>'register']);
+    $routes->connect('/pages/register',['controller'=>'Pages','action'=>'register']);
     $routes->get('/login',['controller'=>'Pages','action'=>'login']);
     /*'
      * Connect catchall routes for all controllers.

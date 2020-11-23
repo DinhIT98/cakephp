@@ -106,25 +106,41 @@ class PagesController extends AppController
     public function insert(){
         
         $this->viewBuilder()->setLayout('user');
-    }
-    public function store(){
         if($this->request->is('post')){
             $this->loadModel('Users');
             $user = $this->Users->newEntity();
-            $user->name=$this->request->data['name'];
-            $user->email=$this->request->data['email'];
-            $user->address=$this->request->data['address'];
+            $user=$this->Users->patchEntity($user,$this->request->getData());
+            // $user->name=$this->request->data['name'];
+            // $user->email=$this->request->data['email'];
+            // $user->address=$this->request->data['address'];
             if($this->Users->save($user)){
+                $this->Flash->success('insert success!');
                 $this->redirect('/index');
             }else{
                 $this->Flash->set('insert data error !',['key'=>'alert']);
                 $this->redirect('/insert');
             }
-        
-            
         }
         
     }
+    // public function store(){
+    //     if($this->request->is('post')){
+    //         $this->loadModel('Users');
+    //         $user = $this->Users->newEntity();
+    //         $user=$this->Users->patchEntity($user,$this->request->getData());
+    //         // $user->name=$this->request->data['name'];
+    //         // $user->email=$this->request->data['email'];
+    //         // $user->address=$this->request->data['address'];
+    //         if($this->Users->save($user)){
+    //             $this->redirect('/index');
+    //         }else{
+    //             $this->Flash->set('insert data error !',['key'=>'alert']);
+    //             $this->redirect('/insert');
+    //         }
+        
+            
+    //     }
+    // }
     public function edit($id){
         // $this->layout=false;
         $this->viewBuilder()->setLayout('user');
@@ -146,6 +162,18 @@ class PagesController extends AppController
     }
     public function register(){
         $this->viewBuilder()->setLayout('user');
+        if($this->request->is('post')){
+            $this->loadModel('Users');
+            $user = $this->Users->newEntity();
+            $user=$this->Users->patchEntity($user,$this->request->getData());
+            if($this->Users->save($user)){
+                $this->Flash->success('insert success!');
+                $this->redirect('/index');
+            }else{
+                $this->Flash->set('insert data error !',['key'=>'alert']);
+                $this->redirect('/pages/register');
+            }
+        }
     }
     public function login(){
         $this->viewBuilder()->setLayout('user');
